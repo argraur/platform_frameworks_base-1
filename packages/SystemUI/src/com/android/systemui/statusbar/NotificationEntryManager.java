@@ -472,6 +472,9 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
         // If there was an async task started after the removal, we don't want to add it back to
         // the list, otherwise we might get leaks.
         boolean isNew = mNotificationData.get(entry.key) == null;
+        boolean hideArtist = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.FORCE_AMBIENT_FOR_MEDIA_HIDE_ARTIST, 1,
+                UserHandle.USER_CURRENT) != 0;
         if (isNew && !entry.row.isRemoved()) {
             addEntry(entry);
         } else if (!isNew && entry.row.hasLowPriorityStateUpdated()) {
@@ -484,11 +487,14 @@ public class NotificationEntryManager implements Dumpable, NotificationInflater.
             String notificationText = null;
             final MediaMetadata data = mMediaManager.getMediaMetadata();
             if (data != null) {
-                CharSequence artist = data.getText(MediaMetadata.METADATA_KEY_ARTIST);
+                if (!hideArtist)
+                    CharSequence artist = data.getText(MediaMetadata.METADATA_KEY_ARTIST);
                 //CharSequence album = data.getText(MediaMetadata.METADATA_KEY_ALBUM);
                 CharSequence title = data.getText(MediaMetadata.METADATA_KEY_TITLE);
                 if (artist != null && title != null) {
                     notificationText = String.format(mTrackInfoSeparator, title.toString(), artist.toString());
+                } else if (title != null) {
+		    notificationText = String.format(mTrackInfoSeparator,title.toString());
                 }
             }
             mMediaManager.setMediaNotificationText(notificationText, false);

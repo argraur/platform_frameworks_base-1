@@ -5673,6 +5673,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     Settings.System.FORCE_AMBIENT_FOR_MEDIA),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
+		    Settings.System.FORCE_AMBIENT_FOR_MEDIA_HIDE_ARTIST),
+		    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CLOCK_SELECTION),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -5704,7 +5707,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS))) {
                 setFpToDismissNotifications();
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.FORCE_AMBIENT_FOR_MEDIA))) {
+                    Settings.System.FORCE_AMBIENT_FOR_MEDIA)) ||
+                    uri.equals(Settings.System.getUriFor(
+                    Settings.System.FORCE_AMBIENT_FOR_MEDIA_HIDE_ARTIST))) {
                 setForceAmbient();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.USE_BLACKAF_THEME))) {

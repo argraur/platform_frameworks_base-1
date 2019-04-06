@@ -4960,6 +4960,13 @@ public final class Settings {
         /** @hide */
         private static final Validator FORCE_AMBIENT_FOR_MEDIA_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+         /**
+         * Whether to hide artist name or not
+         * 0 = Show (Default)
+         * 1 = Hide
+         * @hide
+         */
+        public static final String FORCE_AMBIENT_FOR_MEDIA_HIDE_ARTIST = "force_ambient_for_media_hide_artist";
 
         /**
          * Whether to vibrate on power connection or disconnection
@@ -5220,6 +5227,7 @@ public final class Settings {
             DOUBLE_TAP_SLEEP_ANYWHERE,
             FINGERPRINT_SUCCESS_VIB,
             FORCE_AMBIENT_FOR_MEDIA,
+            FORCE_AMBIENT_FOR_MEDIA_HIDE_ARTIST,
             FULL_GESTURE_NAVBAR,
             FULL_GESTURE_NAVBAR_DT2S,
             HEADS_UP_TIMEOUT,
@@ -5374,6 +5382,7 @@ public final class Settings {
             PUBLIC_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PUBLIC_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
             PUBLIC_SETTINGS.add(FORCE_AMBIENT_FOR_MEDIA);
+            PUBLIC_SETTINGS.add(FORCE_AMBIENT_FOR_MEDIA_HIDE_ARTIST);
             PUBLIC_SETTINGS.add(FULL_GESTURE_NAVBAR);
             PUBLIC_SETTINGS.add(FULL_GESTURE_NAVBAR_DT2S);
             PUBLIC_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
